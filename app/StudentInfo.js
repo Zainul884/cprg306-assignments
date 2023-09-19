@@ -6,6 +6,7 @@ export default function StudentInfo()
             <div>
                 <p>Zainul Malik</p>
                 <p>CPRG 306 A</p>
+                <Link href="https://github.com/Zainul884/cprg306-assignments.git">GitHub Repository</Link>
             </div>
         </main>
     )
