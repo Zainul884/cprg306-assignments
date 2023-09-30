@@ -18,9 +18,9 @@ function ItemList() {
     ];
 
     return (
-        <div className="bg-gray-100 p-8">
-            <h2 className="text-2xl font-bold text-gray-800">Shopping List</h2>
-            <ul className="mt-2 text-gray-600 text-justify">
+        <div className="bg-gray-100 p-8 rounded-lg shadow-lg max-w-2xl mx-auto mt-10">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Shopping List</h2>
+            <ul className="space-y-2">
                 {items.map((item, index) => (
                     <Item key={index} {...item} />
                 ))}
