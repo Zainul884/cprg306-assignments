@@ -20,13 +20,17 @@ function Page() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Meal Ideas</h2>
+      <h1 className="text-3xl font-bold text-gray-800 mb-4">Shopping List</h1>
       <div style={{ display: 'flex', justifyContent: 'center', width: '100%', gap: '20px' }}>
         <div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Add New Item</h2>
           <NewItem onAddItem={handleAddItem} />
           <ItemList items={items} onItemSelect={handleItemSelect} />
         </div>
-        <MealIdeas ingredient={selectedItemName} />
+        <div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Meal Ideas</h2>
+          <MealIdeas ingredient={selectedItemName} />
+        </div>
       </div>
     </div>
   );
