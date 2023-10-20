@@ -12,10 +12,12 @@ function Page() {
   };
 
   return (
-    <div>
+    <main className="bg-gray-100 min-h-screen flex flex-col items-center justify-center py-8">
+      <h1 className="text-4xl font-bold text-gray-800 mb-6">Shopping List</h1>
+      <h2 className="text-2xl font-semibold text-gray-700 mb-2">Add New Item</h2> {/* Reduced margin-bottom */}
       <NewItem onAddItem={handleAddItem} />
       <ItemList items={items} />
-    </div>
+    </main>
   );
 }
 
