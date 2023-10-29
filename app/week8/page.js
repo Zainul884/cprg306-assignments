@@ -46,7 +46,7 @@ function LandingPage() {
                         Logout
                     </button>
                     <div className="mt-4">
-                        <Link href="/shopping-list" className="text-blue-500 hover:underline">
+                        <Link href="week8/shopping-list" className="text-blue-500 hover:underline">
                             Go to Shopping List
                         </Link>
                     </div>
