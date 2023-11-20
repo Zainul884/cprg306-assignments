@@ -4,7 +4,7 @@ import { useUserAuth } from "../_utils/auth-context";
 import NewItem from './new-item.js';
 import ItemList from './item-list.js';
 import MealIdeas from './meal-ideas.js';
-import { getItems, addItem } from '../_services/shopping-list-service.js';
+import { getItems, addItem, deleteItem } from '../_services/shopping-list-service.js';
 
 function Page() {
     const [items, setItems] = useState([]);
@@ -40,6 +40,15 @@ function Page() {
         setSelectedItemName(cleanedName);
     };
 
+    const handleDeleteItem = async (itemId) => {
+        try {
+            await deleteItem(user.uid, itemId);
+            setItems(prevItems => prevItems.filter(item => item.id !== itemId));
+        } catch (error) {
+            console.error("Error deleting item:", error);
+        }
+    };
+
     if (!user) {
         return (
             <main className="bg-gray-100 min-h-screen flex items-center justify-center">
@@ -59,7 +68,7 @@ function Page() {
                 <div>
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Add New Item</h2>
                     <NewItem onAddItem={handleAddItem} />
-                    <ItemList items={items} onItemSelect={handleItemSelect} />
+                    <ItemList items={items} onItemSelect={handleItemSelect} onDeleteItem={handleDeleteItem} />
                 </div>
                 <div>
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Meal Ideas</h2>

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useUserAuth } from "./_utils/auth-context";
 import Link from "next/link";
-import { getItems, addItem } from "./_services/shopping-list-service"; // import deleteItem as well if needed
+import { getItems, addItem, deleteItem } from "./_services/shopping-list-service";
 
 function LandingPage() {
     const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
@@ -27,17 +27,15 @@ function LandingPage() {
         loadItems();
     }, [user?.uid]);
 
-    // Handle adding a new item (you can modify as per your UI input method)
     const handleAddItem = async (newItemName) => {
         const itemId = await addItem(user.uid, { name: newItemName });
         setItems([...items, { id: itemId, name: newItemName }]);
     };
 
-    // Optional: Handle deleting an item
-    // const handleDeleteItem = async (itemId) => {
-    //     await deleteItem(user.uid, itemId);
-    //     setItems(items.filter(item => item.id !== itemId));
-    // };
+    const handleDeleteItem = async (itemId) => {
+        await deleteItem(user.uid, itemId);
+        setItems(items.filter(item => item.id !== itemId));
+    };
 
     if (!user) {
         return (
@@ -67,7 +65,15 @@ function LandingPage() {
                     </p>
                     <ul>
                         {items.map(item => (
-                            <li key={item.id}>{item.name}</li> // Add delete button if needed
+                            <li key={item.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px', padding: '10px', border: '1px solid #ddd', borderRadius: '4px' }}>
+                                {item.name}
+                                <button 
+                                    onClick={() => handleDeleteItem(item.id)}
+                                    style={{ backgroundColor: 'red', color: 'white', padding: '5px 10px', borderRadius: '5px' }}
+                                >
+                                    Delete
+                                </button>
+                            </li>
                         ))}
                     </ul>
                     <button 
